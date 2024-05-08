@@ -1,8 +1,9 @@
 package org.example;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Student {
+public class Student implements Serializable {
 
     private final String name;
     protected final Program curriculum;

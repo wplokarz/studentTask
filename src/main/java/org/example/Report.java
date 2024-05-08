@@ -27,8 +27,8 @@ public class Report {
             for (String key: this.student.curriculum.getClasses().keySet()) {
                 System.out.println(key + " \t" +this.student.curriculum.getClasses().get(key));
             }
-            System.out.println("START DATE: " + this.student.getStartDate() + " " + WorkingTime.START_HOUR + ":00");
-            System.out.println("END DATE: " + estimatedFinishDate(this.student.curriculum.sumOfHours()) + " " + WorkingTime.END_HOUR + ":00");
+            System.out.println("START DATE: " + this.student.getStartDate());
+            System.out.println("END DATE: " + estimatedFinishDate(this.student.curriculum.sumOfHours()));
             System.out.println(calculateRemainingTrainingTime());
         }
     }
@@ -61,20 +61,23 @@ public class Report {
         }
     }
 
-    public String estimatedFinishDate(int courseDuration) {
+    public LocalDate estimatedFinishDate(int courseDuration) {
         LocalTime startTime = LocalTime.of(WorkingTime.START_HOUR,0);
         LocalDateTime course_start = LocalDateTime.of(this.student.getStartDate(), startTime);
-        int daysPassed = -1;
-        LocalDate finishDate = LocalDate.of(this.student.getStartDate().getYear(), this.student.getStartDate().getMonth(), this.student.getStartDate().getDayOfMonth());
+        float daysPassed = 0f;
+        LocalDate finishDate = LocalDate.of(this.student.getStartDate().getYear(), this.student.getStartDate().getMonth(),this.student.getStartDate().getDayOfMonth());
         // get how may working days is required to finish course
-        while (daysPassed < courseDuration/8) {
+        while (daysPassed < (float) courseDuration /8) {
             if (!WorkingTime.EXCLUDED_DAYS.contains(course_start.getDayOfWeek().toString())) {
                 finishDate = finishDate.plusDays(1);
                 daysPassed++;
             }
+            course_start = course_start.plusDays(1);
         }
-        return finishDate.toString();
+        course_start = course_start.minusDays(1);
+        return LocalDate.of(course_start.getYear(), course_start.getMonth(), course_start.getDayOfMonth());
     }
+
     public static int calculateWorkingHours(LocalDateTime startDate) {
         LocalDateTime now = LocalDateTime.now();
         int workingHours = 0;

@@ -1,8 +1,9 @@
 package org.example;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-class Program {
+class Program implements Serializable {
 
     private final String name;
 
