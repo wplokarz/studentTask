@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class StudentsList {
 
-    static Student firstStudent = StudentFactory.createStudent("Ivanov Ivan", ProgramRunner.javaProgramSet(), LocalDate.of(2024, 4, 25));
-    static Student secondStudent = StudentFactory.createStudent("Sidorov Ivan", ProgramRunner.qaProgramSet(), LocalDate.of(2024, 4, 20));
+    static Student firstStudent = StudentFactory.createStudent("Ivanov Ivan", ProgramFactory.createJavaProgram(), LocalDate.of(2024, 4, 25));
+    static Student secondStudent = StudentFactory.createStudent("Sidorov Ivan", ProgramFactory.createQAProgram(), LocalDate.of(2024, 4, 20));
 
     public static ArrayList<Student> createStudentList() {
         ArrayList<Student> students = new ArrayList<>();

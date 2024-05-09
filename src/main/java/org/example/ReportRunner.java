@@ -15,7 +15,7 @@ public class ReportRunner {
         }
         else {
             WriterStudent writerStudent = new WriterStudent(StudentsList.createStudentList());
-            writerStudent.studentRunner();
+            writerStudent.saveStudentsToFile();
             ReaderStudent reader = new ReaderStudent();
             return reader.getStudents();
         }

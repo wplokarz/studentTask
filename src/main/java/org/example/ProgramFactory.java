@@ -1,8 +1,8 @@
 package org.example;
 
-public class ProgramRunner {
+public class ProgramFactory {
 
-    public static Program javaProgramSet() {
+    public static Program createJavaProgram() {
         Program javaProgram = new Program("JAVA Developer");
         javaProgram.addClass("JAVA", 16);
         javaProgram.addClass("JDBC", 24);
@@ -10,7 +10,7 @@ public class ProgramRunner {
         return javaProgram;
     }
 
-    public static Program qaProgramSet() {
+    public static Program createQAProgram() {
         Program qaProgram = new Program("AQA");
         qaProgram.addClass("Test design", 10);
         qaProgram.addClass("Page object", 16);

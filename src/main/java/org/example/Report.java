@@ -12,6 +12,9 @@ public class Report {
     }
 
     public void generateReport() {
+        LocalDateTime now = LocalDateTime.now();
+        String nowTimeString = now.getDayOfMonth() + " " + now.getMonth() + " " + now.getYear() + ", " + now.getDayOfWeek() + ", " + now.getHour() + ":" + now.getMinute();
+        System.out.format("Generating report date - %s\n", nowTimeString);
         System.out.println(this.student.getName() + " (" + this.student.curriculum.getProgramName() + ") - " + calculateRemainingTrainingTime());
     }
 
@@ -36,7 +39,7 @@ public class Report {
     public String calculateRemainingTrainingTime() {
         LocalTime startTime = LocalTime.of(WorkingTime.START_HOUR,0);
         LocalDateTime course_start = LocalDateTime.of(this.student.getStartDate(), startTime);
-        int hoursToFinishCourseOrAfterFinishCourse = calculateWorkingHours(course_start);
+        int hoursToFinishCourseOrAfterFinishCourse = calculateWorkingHoursBetweenNowAndCertainDateTime(course_start);
         if (hoursToFinishCourseOrAfterFinishCourse > this.student.courseDuration()) {
             int timePast = hoursToFinishCourseOrAfterFinishCourse - this.student.courseDuration();
             String timePastInDaysAndHours = convertHoursToDaysAndHours(timePast);
@@ -78,7 +81,7 @@ public class Report {
         return LocalDate.of(course_start.getYear(), course_start.getMonth(), course_start.getDayOfMonth());
     }
 
-    public static int calculateWorkingHours(LocalDateTime startDate) {
+    private static int calculateWorkingHoursBetweenNowAndCertainDateTime(LocalDateTime startDate) {
         LocalDateTime now = LocalDateTime.now();
         int workingHours = 0;
 

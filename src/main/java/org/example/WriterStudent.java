@@ -15,7 +15,7 @@ public class WriterStudent {
         this.students = students;
     }
 
-    public void studentRunner() throws IOException {
+    public void saveStudentsToFile() throws IOException {
         try {
             for (Student stu:this.students) {
                 o1.writeObject(stu);
