@@ -38,16 +38,26 @@ public class Report {
 
     public String calculateRemainingTrainingTime() {
         LocalTime startTime = LocalTime.of(WorkingTime.START_HOUR,0);
-        LocalDateTime course_start = LocalDateTime.of(this.student.getStartDate(), startTime);
-        int hoursToFinishCourseOrAfterFinishCourse = calculateWorkingHoursBetweenNowAndCertainDateTime(course_start);
+
+        // LocalDateTime variable with date as course start date and time specified in WorkingTime class
+        LocalDateTime courseStartDateTime = LocalDateTime.of(this.student.getStartDate(), startTime);
+
+        // variable to store how many working hours are between now and certain dateTime
+        int hoursToFinishCourseOrAfterFinishCourse = calculateWorkingHoursBetweenNowAndCertainDateTime(courseStartDateTime);
+
+        // if more working hours passed since course start date than now return message that training is completed and how much time passed
         if (hoursToFinishCourseOrAfterFinishCourse > this.student.courseDuration()) {
             int timePast = hoursToFinishCourseOrAfterFinishCourse - this.student.courseDuration();
             String timePastInDaysAndHours = convertHoursToDaysAndHours(timePast);
             return String.format("Training completed. %shave passed since the end.", timePastInDaysAndHours);
         }
+
+        // if working hours passed since course start is equal to course duration then print that training's been just completed
         else if (hoursToFinishCourseOrAfterFinishCourse == this.student.courseDuration()) {
             return "Training completed minutes ago.";
         }
+
+        // if less working hours passed since course start than course duration time
         else {
             int timePast = this.student.courseDuration() - hoursToFinishCourseOrAfterFinishCourse;
             String timePastInDaysAndHours = convertHoursToDaysAndHours(timePast);
@@ -65,20 +75,19 @@ public class Report {
     }
 
     public LocalDate estimatedFinishDate(int courseDuration) {
-        LocalTime startTime = LocalTime.of(WorkingTime.START_HOUR,0);
-        LocalDateTime course_start = LocalDateTime.of(this.student.getStartDate(), startTime);
+        LocalDate finishDate = this.student.getStartDate();
         float daysPassed = 0f;
-        LocalDate finishDate = LocalDate.of(this.student.getStartDate().getYear(), this.student.getStartDate().getMonth(),this.student.getStartDate().getDayOfMonth());
+
         // get how may working days is required to finish course
         while (daysPassed < (float) courseDuration /8) {
-            if (!WorkingTime.EXCLUDED_DAYS.contains(course_start.getDayOfWeek().toString())) {
-                finishDate = finishDate.plusDays(1);
+            if (!WorkingTime.EXCLUDED_DAYS.contains(finishDate.getDayOfWeek().toString())) {
                 daysPassed++;
             }
-            course_start = course_start.plusDays(1);
+            finishDate = finishDate.plusDays(1);
         }
-        course_start = course_start.minusDays(1);
-        return LocalDate.of(course_start.getYear(), course_start.getMonth(), course_start.getDayOfMonth());
+
+        // after last iteration of the loop Date is always one day ahead than it should so one day has to be subtracted
+        return finishDate.minusDays(1);
     }
 
     private static int calculateWorkingHoursBetweenNowAndCertainDateTime(LocalDateTime startDate) {
