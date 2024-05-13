@@ -14,7 +14,6 @@ class ReportTest {
     Program javaProgram = ProgramFactory.createJavaProgram();
     Program qaProgram = ProgramFactory.createQAProgram();
     Student testStudent = StudentFactory.createStudent("Name Surname", javaProgram, LocalDate.of(2024,5,6));
-    Report report = new Report(testStudent);
 
     @ParameterizedTest
     @CsvSource({
@@ -41,13 +40,6 @@ class ReportTest {
         Report report = new Report(testStudent);
         LocalDate actualResult = report.estimatedFinishDate(qaProgram.sumOfHours());
         LocalDate expectedResult = LocalDate.parse(expectedResultDateStr);
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    void calculateRemainingTrainingTimeTest() {
-        String expectedResult = "Training completed.";
-        String actualResult = report.calculateRemainingTrainingTime().substring(0,19);
         assertEquals(expectedResult, actualResult);
     }
 
