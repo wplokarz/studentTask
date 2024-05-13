@@ -52,7 +52,7 @@ class ReportTest {
     }
 
     @Test
-    void generateReportTest() throws Exception {
+    void generateShortReportTest() throws Exception {
         Report report = new Report(testStudent);
         report.generateReport();
         LocalDateTime now = LocalDateTime.now();
@@ -60,6 +60,18 @@ class ReportTest {
         String expectedResult = "Generating report date - " + nowTimeString +
                 "\nName Surname (JAVA Developer) - " + report.calculateRemainingTrainingTime();
         String actualResult = tapSystemOut(report::generateReport);
+        assertEquals(expectedResult, actualResult.trim());
+    }
+
+    @Test
+    void generateLongReportTest() throws Exception {
+        Report report = new Report(testStudent);
+        report.generateReport(1);
+        String expectedResult = "STUDENT: Name Surname\nWORKING TIME: from 10 to 18\nCURRICULUM: JAVA Developer\nCOURSE:56 hours\nJAVA \t16\nJDBC \t24\nSpring \t16\nSTART DATE: 2024-05-06\nEND DATE: "
+                + report.estimatedFinishDate(javaProgram.sumOfHours()) + "\n" + report.calculateRemainingTrainingTime();
+        String actualResult = tapSystemOut(()->{
+            report.generateReport(1);
+        });
         assertEquals(expectedResult, actualResult.trim());
     }
 }

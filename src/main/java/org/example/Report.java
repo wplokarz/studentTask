@@ -78,7 +78,7 @@ public class Report {
         LocalDate finishDate = this.student.getStartDate();
         float daysPassed = 0f;
 
-        // get how may working days is required to finish course
+        // loop over days in course
         while (daysPassed < (float) courseDuration /8) {
             if (!WorkingTime.EXCLUDED_DAYS.contains(finishDate.getDayOfWeek().toString())) {
                 daysPassed++;
