@@ -1,4 +1,4 @@
-package org.example;
+package org.example.moduls;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class Student implements Serializable {
 
     private final String name;
-    protected final Program curriculum;
+    private final Program curriculum;
     private final LocalDate startDate;
 
     public Student(String name, Program curriculum, LocalDate start_date) {
@@ -17,15 +17,19 @@ public class Student implements Serializable {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public LocalDate getStartDate() {
-        return this.startDate;
+        return startDate;
     }
 
     public Integer courseDuration() {
-        return this.curriculum.sumOfHours();
+        return curriculum.sumOfHours();
+    }
+
+    public Program getProgram() {
+        return curriculum;
     }
 
 }

@@ -1,4 +1,7 @@
-package org.example;
+package org.example.factories;
+
+import org.example.moduls.Program;
+import org.example.moduls.Student;
 
 import java.time.LocalDate;
 

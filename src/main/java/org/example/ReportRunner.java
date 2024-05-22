@@ -1,13 +1,18 @@
 package org.example;
 
+import org.example.moduls.Student;
+import org.example.reporting.ReportGenerator;
+import org.example.data.StudentsList;
+import org.example.writereadstudents.ReaderStudent;
+import org.example.writereadstudents.WriterStudent;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ReportRunner {
 
-
-    public static ArrayList<Student> getStudentList() throws IOException, ClassNotFoundException {
+    public static List<Student> getStudentList() throws IOException, ClassNotFoundException {
         File file = new File("students.txt");
         if (file.exists()) {
             ReaderStudent reader = new ReaderStudent();
@@ -21,13 +26,11 @@ public class ReportRunner {
         }
     }
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ArrayList<Student> students = getStudentList();
+        List<Student> students = getStudentList();
         for (Student student: students) {
-            Report report = new Report(student);
-            report.generateReport();
-            report.generateReport(1);
-
+            ReportGenerator reportGenerator = new ReportGenerator(student);
+            reportGenerator.print();
+            reportGenerator.print(1);
         }
-
     }
 }
