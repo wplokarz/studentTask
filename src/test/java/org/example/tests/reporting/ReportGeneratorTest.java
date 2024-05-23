@@ -28,7 +28,7 @@ class ReportGeneratorTest {
         String nowTimeString = now.getDayOfMonth() + " " + now.getMonth() + " " + now.getYear() + ", " + now.getDayOfWeek() + ", " + now.getHour() + ":" + now.getMinute();
         String expectedResult = "Generating report date - " + nowTimeString +
                 "\nName Surname (JAVA Developer) - " + new CalculateWorkingTime().calculateRemainingTrainingTime(testStudent);
-        String actualResult = tapSystemOut(reportGenerator::print);
+        String actualResult = tapSystemOut(reportGenerator::printReport);
         assertEquals(expectedResult, actualResult.trim());
     }
 
@@ -38,7 +38,7 @@ class ReportGeneratorTest {
         String expectedResult = "STUDENT: Name Surname\nWORKING TIME: from 10 to 18\nCURRICULUM: JAVA Developer\nCOURSE:56 hours\nJAVA \t16\nJDBC \t24\nSpring \t16\nSTART DATE: 2024-05-06\nEND DATE: "
                 + EstimatedFinishDate.calculateCourseFinishDate(testStudent) + "\n" + new CalculateWorkingTime().calculateRemainingTrainingTime(testStudent);
         String actualResult = tapSystemOut(()->{
-            reportGenerator.print(1);
+            reportGenerator.printReport(1);
         });
         assertEquals(expectedResult, actualResult.trim());
     }

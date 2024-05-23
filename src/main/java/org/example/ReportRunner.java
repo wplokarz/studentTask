@@ -29,8 +29,8 @@ public class ReportRunner {
         List<Student> students = getStudentList();
         for (Student student: students) {
             ReportGenerator reportGenerator = new ReportGenerator(student);
-            reportGenerator.print();
-            reportGenerator.print(1);
+            reportGenerator.printReport();
+            reportGenerator.printReport(1);
         }
     }
 }

@@ -14,16 +14,16 @@ public class ReportGenerator {
         this.student = student;
     }
 
-    public void print() {
+    public void printReport() {
         LocalDateTime now = LocalDateTime.now();
         String nowTimeString = now.getDayOfMonth() + " " + now.getMonth() + " " + now.getYear() + ", " + now.getDayOfWeek() + ", " + now.getHour() + ":" + now.getMinute();
         System.out.format("Generating report date - %s\n", nowTimeString);
         System.out.println(student.getName() + " (" + student.getProgram().getProgramName() + ") - " + new CalculateWorkingTime().calculateRemainingTrainingTime(student));
     }
 
-    public void print(Integer param) {
+    public void printReport(Integer param) {
         if (param == 0) {
-            print();
+            printReport();
         }
         else {
             System.out.println("STUDENT: " + student.getName());
