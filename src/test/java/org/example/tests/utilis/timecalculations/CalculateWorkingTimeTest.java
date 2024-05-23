@@ -1,11 +1,13 @@
-package org.example.tests.time_calculations;
+package org.example.tests.utilis.timecalculations;
 
 import org.example.data.ProgramsList;
-import org.example.moduls.Program;
-import org.example.moduls.Student;
+import org.example.models.Program;
+import org.example.models.Student;
 import org.example.factories.StudentFactory;
-import org.example.timecalculations.CalculateWorkingTime;
+import org.example.utilis.timecalculations.CalculateWorkingTime;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +28,18 @@ class CalculateWorkingTimeTest {
 
         int workingHoursSinceStartOfTheCourse =  new CalculateWorkingTime().calculateWorkingHoursBetweenNowAndCertainDateTime(startDateWithTime) - javaProgram.sumOfHours();
         String daysAndHoursPassedSinceCourseEnd = new CalculateWorkingTime().convertHoursToDaysAndHours(workingHoursSinceStartOfTheCourse);
-        String expectedResult = "Training completed. " + daysAndHoursPassedSinceCourseEnd + "have passed since the end.";
+        String expectedResult = "Training completed. " + daysAndHoursPassedSinceCourseEnd + " have passed since the end.";
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "20, 2 d 4 hours",
+            "0, 0 hours",
+            "100, 12 d 4 hours"
+    })
+    void convertHoursToDaysAndHoursTest(int timePast, String expectedResult) {
+        String actualResult = new CalculateWorkingTime().convertHoursToDaysAndHours(timePast);
         assertEquals(expectedResult, actualResult);
     }
 }

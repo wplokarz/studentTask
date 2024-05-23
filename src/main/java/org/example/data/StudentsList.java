@@ -1,7 +1,7 @@
 package org.example.data;
 
 import org.example.factories.StudentFactory;
-import org.example.moduls.Student;
+import org.example.models.Student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,5 +1,5 @@
-package org.example.timecalculations;
-import org.example.moduls.Student;
+package org.example.utilis.timecalculations;
+import org.example.models.Student;
 
 import java.time.LocalDate;
 

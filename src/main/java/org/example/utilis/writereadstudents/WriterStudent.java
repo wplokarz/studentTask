@@ -1,6 +1,6 @@
-package org.example.writereadstudents;
+package org.example.utilis.writereadstudents;
 
-import org.example.moduls.Student;
+import org.example.models.Student;
 
 import java.io.*;
 import java.util.List;
@@ -19,8 +19,8 @@ public class WriterStudent {
 
     public void saveStudentsToFile() throws IOException {
         try {
-            for (Student stu:students) {
-                objectOutputStream.writeObject(stu);
+            for (Student student:students) {
+                objectOutputStream.writeObject(student);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

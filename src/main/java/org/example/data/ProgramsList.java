@@ -1,7 +1,7 @@
 package org.example.data;
 
 import org.example.factories.ProgramFactory;
-import org.example.moduls.Program;
+import org.example.models.Program;
 
 import java.util.Map;
 

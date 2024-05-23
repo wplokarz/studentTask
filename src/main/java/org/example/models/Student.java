@@ -1,4 +1,4 @@
-package org.example.moduls;
+package org.example.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;

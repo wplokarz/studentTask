@@ -1,12 +1,12 @@
 package org.example.tests.reporting;
 
 import org.example.data.ProgramsList;
-import org.example.moduls.Program;
+import org.example.models.Program;
 import org.example.reporting.ReportGenerator;
-import org.example.moduls.Student;
+import org.example.models.Student;
 import org.example.factories.StudentFactory;
-import org.example.timecalculations.CalculateWorkingTime;
-import org.example.timecalculations.EstimatedFinishDate;
+import org.example.utilis.timecalculations.CalculateWorkingTime;
+import org.example.utilis.timecalculations.EstimatedFinishDate;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

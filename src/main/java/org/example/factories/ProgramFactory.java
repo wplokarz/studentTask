@@ -1,6 +1,6 @@
 package org.example.factories;
 
-import org.example.moduls.Program;
+import org.example.models.Program;
 
 import java.util.Map;
 

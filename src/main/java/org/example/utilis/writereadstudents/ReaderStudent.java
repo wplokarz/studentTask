@@ -1,6 +1,6 @@
-package org.example.writereadstudents;
+package org.example.utilis.writereadstudents;
 
-import org.example.moduls.Student;
+import org.example.models.Student;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,10 +1,10 @@
-package org.example.tests.time_calculations;
+package org.example.tests.utilis.timecalculations;
 
 import org.example.data.ProgramsList;
-import org.example.moduls.Program;
-import org.example.moduls.Student;
+import org.example.models.Program;
+import org.example.models.Student;
 import org.example.factories.StudentFactory;
-import org.example.timecalculations.EstimatedFinishDate;
+import org.example.utilis.timecalculations.EstimatedFinishDate;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

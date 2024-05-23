@@ -1,8 +1,8 @@
 package org.example.reporting;
 
-import org.example.moduls.Student;
-import org.example.timecalculations.CalculateWorkingTime;
-import org.example.timecalculations.EstimatedFinishDate;
+import org.example.models.Student;
+import org.example.utilis.timecalculations.CalculateWorkingTime;
+import org.example.utilis.timecalculations.EstimatedFinishDate;
 
 import java.time.*;
 

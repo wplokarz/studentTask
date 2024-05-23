@@ -1,7 +1,7 @@
-package org.example.timecalculations;
+package org.example.utilis.timecalculations;
 
 
-import org.example.moduls.Student;
+import org.example.models.Student;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -33,7 +33,7 @@ public class CalculateWorkingTime {
         if (hoursToFinishCourseOrAfterFinishCourse > student.courseDuration()) {
             int timePast = hoursToFinishCourseOrAfterFinishCourse - student.courseDuration();
             String timePastInDaysAndHours = convertHoursToDaysAndHours(timePast);
-            return String.format("%s %shave passed since the end.", trainingCompleted,timePastInDaysAndHours);
+            return String.format("%s %s have passed since the end.", trainingCompleted,timePastInDaysAndHours);
         }
 
         // if working hours passed since course start is equal to course duration then print that training's been just completed
@@ -45,16 +45,17 @@ public class CalculateWorkingTime {
         else {
             int timePast = student.courseDuration() - hoursToFinishCourseOrAfterFinishCourse;
             String timePastInDaysAndHours = convertHoursToDaysAndHours(timePast);
-            return String.format("%s %sare left until the end.", trainingInProgress,timePastInDaysAndHours);
+            return String.format("%s %s are left until the end.", trainingInProgress,timePastInDaysAndHours);
         }
     }
 
     public String convertHoursToDaysAndHours(int timePast) {
+        if (timePast <= 0) return "0 hours";
         if (timePast > 8) {
-            return timePast % 8 != 0 ? timePast / 8 + " d " + timePast % 8 + " hours " : timePast / 8 + " d ";
+            return timePast % 8 != 0 ? timePast / 8 + " d " + timePast % 8 + " hours" : timePast / 8 + " d ";
         }
         else {
-            return timePast + " hours ";
+            return timePast + " hours";
         }
     }
 
