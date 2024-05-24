@@ -1,16 +1,16 @@
 package org.example.tests.utilis.timecalculations;
 
 import org.example.data.ProgramsList;
+import org.example.factories.StudentFactory;
 import org.example.models.Program;
 import org.example.models.Student;
-import org.example.factories.StudentFactory;
 import org.example.utilis.timecalculations.EstimatedFinishDate;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EstimatedFinishDateTest {
 

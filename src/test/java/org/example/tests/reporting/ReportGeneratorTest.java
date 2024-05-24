@@ -1,10 +1,10 @@
 package org.example.tests.reporting;
 
 import org.example.data.ProgramsList;
-import org.example.models.Program;
-import org.example.reporting.ReportGenerator;
-import org.example.models.Student;
 import org.example.factories.StudentFactory;
+import org.example.models.Program;
+import org.example.models.Student;
+import org.example.reporting.ReportGenerator;
 import org.example.utilis.timecalculations.CalculateWorkingTime;
 import org.example.utilis.timecalculations.EstimatedFinishDate;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOut;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReportGeneratorTest {
 

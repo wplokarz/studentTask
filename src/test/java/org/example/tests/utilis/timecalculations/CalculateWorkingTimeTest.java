@@ -1,10 +1,11 @@
 package org.example.tests.utilis.timecalculations;
 
 import org.example.data.ProgramsList;
+import org.example.factories.StudentFactory;
 import org.example.models.Program;
 import org.example.models.Student;
-import org.example.factories.StudentFactory;
 import org.example.utilis.timecalculations.CalculateWorkingTime;
+import org.example.utilis.dateprovider.CurrentDateTimeProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculateWorkingTimeTest {
 
@@ -40,6 +41,19 @@ class CalculateWorkingTimeTest {
     })
     void convertHoursToDaysAndHoursTest(int timePast, String expectedResult) {
         String actualResult = new CalculateWorkingTime().convertHoursToDaysAndHours(timePast);
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void calculateWorkingHoursBetweenNowAndCertainDateTimeTest() {
+        CurrentDateTimeProvider mockDateTimeProvider = new CurrentDateTimeProvider() {
+            @Override
+            public LocalDateTime getCurrentDateTime() {
+                return LocalDateTime.of(2024, 5, 10, 18, 1);
+            }
+        };
+        int actualResult = new CalculateWorkingTime(mockDateTimeProvider).calculateWorkingHoursBetweenNowAndCertainDateTime(LocalDateTime.of(2024,5,9,10,0));
+        int expectedResult = 16;
         assertEquals(expectedResult, actualResult);
     }
 }

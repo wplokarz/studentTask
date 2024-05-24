@@ -1,7 +1,8 @@
 package org.example.utilis.timecalculations;
 
-
 import org.example.models.Student;
+import org.example.utilis.dateprovider.CurrentDateTimeProvider;
+import org.example.utilis.dateprovider.SystemCurrentDateTimeProvider;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -19,6 +20,16 @@ public class CalculateWorkingTime {
     private static final String trainingJustFinished = "Training completed minutes ago.";
 
     private static final String trainingInProgress = "Training is not finished.";
+
+    private final CurrentDateTimeProvider currentDateTimeProvider;
+
+    public CalculateWorkingTime(CurrentDateTimeProvider currentDateTimeProvider) {
+        this.currentDateTimeProvider = currentDateTimeProvider;
+    }
+
+    public CalculateWorkingTime() {
+        this(new SystemCurrentDateTimeProvider());
+    }
 
     public String calculateRemainingTrainingTime(Student student) {
         LocalTime startTime = LocalTime.of(START_HOUR,0);
@@ -60,7 +71,7 @@ public class CalculateWorkingTime {
     }
 
     public int calculateWorkingHoursBetweenNowAndCertainDateTime(LocalDateTime startDate) {
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = currentDateTimeProvider.getCurrentDateTime();
         int workingHours = 0;
 
         while (startDate.isBefore(now)) {
