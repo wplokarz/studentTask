@@ -17,14 +17,14 @@ public class ReportRunner {
         if (file.exists()) {
             ReaderStudent reader = new ReaderStudent();
             return reader.getStudents();
-        }
-        else {
+        } else {
             WriterStudent writerStudent = new WriterStudent(StudentsList.createStudentList());
             writerStudent.saveStudentsToFile();
             ReaderStudent reader = new ReaderStudent();
             return reader.getStudents();
         }
     }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         List<Student> students = getStudentList();
         for (Student student: students) {

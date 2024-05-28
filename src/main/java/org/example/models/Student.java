@@ -10,7 +10,6 @@ public class Student implements Serializable {
     private final LocalDate startDate;
 
     public Student(String name, Program curriculum, LocalDate start_date) {
-
         this.name = name;
         this.curriculum = curriculum;
         this.startDate = start_date;
@@ -31,5 +30,4 @@ public class Student implements Serializable {
     public Program getProgram() {
         return curriculum;
     }
-
 }

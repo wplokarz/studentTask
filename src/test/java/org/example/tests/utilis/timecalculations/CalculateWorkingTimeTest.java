@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CalculateWorkingTimeTest {
 
@@ -36,12 +37,20 @@ class CalculateWorkingTimeTest {
     @ParameterizedTest
     @CsvSource({
             "20, 2 d 4 hours",
-            "0, 0 hours",
             "100, 12 d 4 hours"
     })
     void convertHoursToDaysAndHoursTest(int timePast, String expectedResult) {
         String actualResult = new CalculateWorkingTime().convertHoursToDaysAndHours(timePast);
         assertEquals(expectedResult, actualResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0",
+            "-100"
+    })
+    void convertHoursToDaysAndHoursRaiseException(int timePast) {
+        assertThrows(IllegalArgumentException.class, () -> new CalculateWorkingTime().convertHoursToDaysAndHours(timePast));
     }
 
     @Test

@@ -61,7 +61,7 @@ public class CalculateWorkingTime {
     }
 
     public String convertHoursToDaysAndHours(int timePast) {
-        if (timePast <= 0) return "0 hours";
+        if (timePast <= 0) throw new IllegalArgumentException("Invalid argument");
         if (timePast > 8) {
             return timePast % 8 != 0 ? timePast / 8 + " d " + timePast % 8 + " hours" : timePast / 8 + " d ";
         }
